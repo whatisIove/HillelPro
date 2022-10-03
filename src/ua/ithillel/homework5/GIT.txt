@@ -1,0 +1,19 @@
+git fetch   обновить информацию по веткам
+
+git pull origin branch_name     обновить/вытащить ветку локально/себе
+
+git branch new_branch_name      создать ветку с названием
+
+git status      посмотреть состояние изменений
+
+git add file_name       добавить файл в индекс
+
+git commit -m “description”     добавить комментарий для индексированных файлов
+
+git push origin branch_name     обновить/отправить ветку удаленно/на git
+
+git checkout master     переключиться на ветку
+
+git merge branch_name       выполнить слияние ветки в текущую
+
+git log -5 --oneline        посмотреть историю изменений
