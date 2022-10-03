@@ -1,0 +1,21 @@
+три merge request - https://github.com/whatisIove/Hillel-Pro/pulls
+
+в .gitignore добавил игнорирование папок /out и /.idea
+
+
+GIT stash:
+
+* сперва создал класс CheckTime, спрятал изменения при помощи команды git stash save CheckTimeClass, дорабатывая другое задание
+
+* просмотрел список всех спрятанных изменений при помощи команды git stash list
+
+* вернул спрятанные изменения ранее с удалением их из листа используя git stash pop с индексом нужной доработки.
+
+
+Git cherry-pick:
+
+* сравнил коммиты двух веток командой git cherry-pick main..lesson_two
+
+* в main ветке воспользовался git log и нашёл коммит с добавлением конфигурации .gitignore
+
+* переключившись на ветку lesson_two выполнил git cherry-pick ad75551 с добавлением настроек игнора, запушил изменения.
