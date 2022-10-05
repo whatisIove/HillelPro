@@ -11,7 +11,7 @@ public class User {
     private int passAttempts = 0;
     private boolean isLoggedIn = false;
     private static final Scanner scanner = new Scanner(System.in);
-    private final static String filePath = "resources/users.txt";
+    private static final String filePath = "resources/users.txt";
 
     public User() {
     }
