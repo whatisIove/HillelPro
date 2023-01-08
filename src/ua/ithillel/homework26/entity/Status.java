@@ -1,8 +1,9 @@
-package ua.ithillel.homework25.entity;
+package ua.ithillel.homework26.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "statuses")
@@ -23,4 +24,8 @@ public class Status {
         this.alias = alias;
         this.description = description;
     }
+
+    @ManyToMany(mappedBy = "statuses")
+    @ToString.Exclude
+    private Set<Client> clients;
 }

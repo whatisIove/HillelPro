@@ -1,7 +1,7 @@
-package ua.ithillel.homework25.service;
+package ua.ithillel.homework26.service;
 
-import ua.ithillel.homework25.dao.StatusDao;
-import ua.ithillel.homework25.entity.Status;
+import ua.ithillel.homework26.dao.StatusDao;
+import ua.ithillel.homework26.entity.Status;
 
 import java.util.List;
 

@@ -1,11 +1,12 @@
-package ua.ithillel.homework25.util;
+package ua.ithillel.homework26.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ua.ithillel.homework25.entity.Account;
-import ua.ithillel.homework25.entity.Client;
-import ua.ithillel.homework25.entity.Status;
+import ua.ithillel.homework26.entity.Account;
+import ua.ithillel.homework26.entity.Client;
+import ua.ithillel.homework26.entity.Job;
+import ua.ithillel.homework26.entity.Status;
 
 public class HibernateConfiguration {
 
@@ -18,6 +19,7 @@ public class HibernateConfiguration {
                 configuration.addAnnotatedClass(Client.class);
                 configuration.addAnnotatedClass(Account.class);
                 configuration.addAnnotatedClass(Status.class);
+                configuration.addAnnotatedClass(Job.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());

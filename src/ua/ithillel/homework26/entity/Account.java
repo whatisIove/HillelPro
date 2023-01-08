@@ -1,4 +1,4 @@
-package ua.ithillel.homework25.entity;
+package ua.ithillel.homework26.entity;
 
 import lombok.*;
 
@@ -16,14 +16,17 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "client_id")
-    private int clientId;
+    //    @Column(name = "client_id", insertable = false, updatable = false)
+    //    private int clientId;
     private String number;
     private double value;
 
-    public Account(int clientId, String number, double value) {
-        this.clientId = clientId;
+    public Account(String number, double value) {
         this.number = number;
         this.value = value;
     }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private Client client;
 }
