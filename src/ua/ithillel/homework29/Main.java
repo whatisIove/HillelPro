@@ -1,16 +1,17 @@
-package ua.ithillel.homework26;
+package ua.ithillel.homework29;
 
-import ua.ithillel.homework26.entity.Account;
-import ua.ithillel.homework26.entity.Client;
-import ua.ithillel.homework26.entity.Job;
-import ua.ithillel.homework26.entity.Status;
-import ua.ithillel.homework26.service.AccountService;
-import ua.ithillel.homework26.service.ClientService;
-import ua.ithillel.homework26.service.JobService;
-import ua.ithillel.homework26.service.StatusService;
+import ua.ithillel.homework29.entity.Account;
+import ua.ithillel.homework29.entity.Client;
+import ua.ithillel.homework29.entity.Job;
+import ua.ithillel.homework29.entity.Status;
+import ua.ithillel.homework29.service.AccountService;
+import ua.ithillel.homework29.service.ClientService;
+import ua.ithillel.homework29.service.JobService;
+import ua.ithillel.homework29.service.StatusService;
 
 import java.util.HashSet;
 import java.util.List;
+
 
 public class Main {
     private static final AccountService accountService = new AccountService();
@@ -58,6 +59,9 @@ public class Main {
         accountService.save(account);
         accountService.save(accountSecond);
         clientService.save(client);
+
+        accountService.getById(1);
+        clientService.getByPhone(null);
     }
 
     private static void getAccountById(final Integer id) {

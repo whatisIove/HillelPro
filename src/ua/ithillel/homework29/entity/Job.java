@@ -1,4 +1,4 @@
-package ua.ithillel.homework26.entity;
+package ua.ithillel.homework29.entity;
 
 import lombok.*;
 

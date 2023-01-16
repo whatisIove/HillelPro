@@ -1,15 +1,17 @@
-package ua.ithillel.homework26.dao;
+package ua.ithillel.homework29.dao;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ua.ithillel.homework26.entity.Job;
-import ua.ithillel.homework26.util.HibernateConfiguration;
+import ua.ithillel.homework29.entity.Job;
+import ua.ithillel.homework29.util.HibernateConfiguration;
 
 import javax.persistence.Query;
 import java.util.List;
 
 public class JobDao {
+    private final Logger logger = Logger.getLogger(JobDao.class);
 
     public Job getById(Integer id) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
@@ -17,6 +19,10 @@ public class JobDao {
         final Transaction transaction = session.beginTransaction();
 
         final Job job = session.get(Job.class, id);
+
+        if (id == null) {
+            logger.debug(String.format("Job is null, where id = {%d}", job.getJobId()));
+        }
 
         transaction.commit();
         session.close();
@@ -32,6 +38,10 @@ public class JobDao {
         final Query query = session.createNamedQuery("getAllJobs");
         List<Job> jobs = query.getResultList();
 
+        if (jobs == null) {
+            logger.debug("Jobs is null.");
+        }
+
         transaction.commit();
         session.close();
 
@@ -43,6 +53,9 @@ public class JobDao {
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
+        if (job.getName() == null) {
+            logger.debug(String.format("Job name is null: %s, id = %d", job.getName(), job.getJobId()));
+        }
         session.save(job);
 
         transaction.commit();
@@ -54,6 +67,9 @@ public class JobDao {
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
+        if (job.getSchedule() == null) {
+            logger.debug(String.format("Job schedule is null: %s, id = %d", job.getSchedule(), job.getJobId()));
+        }
         session.update(job);
 
         transaction.commit();
@@ -65,6 +81,9 @@ public class JobDao {
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
+        if (job.getClient() == null) {
+            logger.debug(String.format("Job to client is null: %s, id = %d", job.getClient(), job.getJobId()));
+        }
         session.delete(job);
 
         transaction.commit();

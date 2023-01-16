@@ -1,15 +1,16 @@
-package ua.ithillel.homework26.util;
+package ua.ithillel.homework29.util;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ua.ithillel.homework26.entity.Account;
-import ua.ithillel.homework26.entity.Client;
-import ua.ithillel.homework26.entity.Job;
-import ua.ithillel.homework26.entity.Status;
+import ua.ithillel.homework29.entity.Account;
+import ua.ithillel.homework29.entity.Client;
+import ua.ithillel.homework29.entity.Job;
+import ua.ithillel.homework29.entity.Status;
 
 public class HibernateConfiguration {
-
+    private static final Logger logger = Logger.getLogger(HibernateConfiguration.class);
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -24,8 +25,10 @@ public class HibernateConfiguration {
                         .applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
-                System.out.println("Session factory Error: " + e);
+                logger.error(String.format("Session factory Error: " + e));
             }
+        } else {
+            logger.info("Session factory already exists");
         }
         return sessionFactory;
     }

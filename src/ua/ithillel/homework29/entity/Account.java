@@ -1,4 +1,4 @@
-package ua.ithillel.homework26.entity;
+package ua.ithillel.homework29.entity;
 
 import lombok.*;
 
@@ -19,9 +19,9 @@ public class Account {
     //    @Column(name = "client_id", insertable = false, updatable = false)
     //    private int clientId;
     private String number;
-    private double value;
+    private Double value;
 
-    public Account(String number, double value) {
+    public Account(String number, Double value) {
         this.number = number;
         this.value = value;
     }

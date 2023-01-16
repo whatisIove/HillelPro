@@ -1,4 +1,4 @@
-package ua.ithillel.homework26.entity;
+package ua.ithillel.homework29.entity;
 
 import lombok.*;
 
@@ -16,7 +16,6 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 
 @NamedNativeQueries({
@@ -31,11 +30,14 @@ public class Client {
     private int id;
     private String name;
     private String email;
-    private long phone;
+    private Long phone;
     private String about;
     private int age;
 
-    public Client(String name, String email, long phone, String about, int age) {
+    public Client() {
+    }
+
+    public Client(String name, String email, Long phone, String about, int age) {
         this.name = name;
         this.email = email;
         this.phone = phone;
