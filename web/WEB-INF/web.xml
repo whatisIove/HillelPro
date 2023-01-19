@@ -5,12 +5,12 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>About</servlet-name>
+        <servlet-name>AboutServlet</servlet-name>
         <servlet-class>ua.ithillel.homework28.servlets.AboutServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>About</servlet-name>
+        <servlet-name>AboutServlet</servlet-name>
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
