@@ -1,13 +1,13 @@
-package ua.ithillel.homework29.util;
+package ua.ithillel.homework31.util;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ua.ithillel.homework29.entity.Account;
-import ua.ithillel.homework29.entity.Client;
-import ua.ithillel.homework29.entity.Job;
-import ua.ithillel.homework29.entity.Status;
+import ua.ithillel.homework31.entity.Account;
+import ua.ithillel.homework31.entity.Client;
+import ua.ithillel.homework31.entity.Job;
+import ua.ithillel.homework31.entity.Status;
 
 public class HibernateConfiguration {
     private static final Logger logger = Logger.getLogger(HibernateConfiguration.class);

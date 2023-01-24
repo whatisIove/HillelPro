@@ -1,92 +1,90 @@
-package ua.ithillel.homework29.dao;
+package ua.ithillel.homework31.dao;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ua.ithillel.homework29.entity.Status;
-import ua.ithillel.homework29.util.HibernateConfiguration;
+import ua.ithillel.homework31.entity.Job;
+import ua.ithillel.homework31.util.HibernateConfiguration;
 
 import javax.persistence.Query;
 import java.util.List;
 
-public class StatusDao {
-    private final Logger logger = Logger.getLogger(StatusDao.class);
+public class JobDao {
+    private final Logger logger = Logger.getLogger(JobDao.class);
 
-    public Status getById(Integer id) {
+    public Job getById(Integer id) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        final Status status = session.get(Status.class, id);
+        final Job job = session.get(Job.class, id);
 
         if (id == null) {
-            logger.debug(String.format("Status is null, where id = {%d}", status.getId()));
+            logger.debug(String.format("Job is null, where id = {%d}", job.getJobId()));
         }
 
         transaction.commit();
         session.close();
 
-        return status;
+        return job;
     }
 
-    public List<Status> getAll() {
+    public List<Job> getAll() {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        final Query query = session.createNamedQuery("getAllStatuses");
-        List<Status> statuses = query.getResultList();
+        final Query query = session.createNamedQuery("getAllJobs");
+        List<Job> jobs = query.getResultList();
 
-        if (statuses == null) {
-            logger.debug("Statuses is null.");
+        if (jobs == null) {
+            logger.debug("Jobs is null.");
         }
 
         transaction.commit();
         session.close();
 
-        return statuses;
+        return jobs;
     }
 
-    public void save(final Status status) {
+    public void save(final Job job) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (status.getAlias() == null) {
-            logger.debug(String.format("Status alias is null: %s, id = %d", status.getAlias(), status.getId()));
+        if (job.getName() == null) {
+            logger.debug(String.format("Job name is null: %s, id = %d", job.getName(), job.getJobId()));
         }
-        session.save(status);
+        session.save(job);
 
         transaction.commit();
         session.close();
     }
 
-    public void update(final Status status) {
+    public void update(final Job job) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (status.getDescription() == null) {
-            logger.debug(String.format("Status description is null: %s, id = %d",
-                    status.getDescription(), status.getId()));
+        if (job.getSchedule() == null) {
+            logger.debug(String.format("Job schedule is null: %s, id = %d", job.getSchedule(), job.getJobId()));
         }
-        session.update(status);
+        session.update(job);
 
         transaction.commit();
         session.close();
     }
 
-    public void delete(final Status status) {
+    public void delete(final Job job) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (status.getClients() == null) {
-            logger.debug(String.format("Clients statuses is null: %s, id = %d",
-                    status.getClients(), status.getId()));
+        if (job.getClient() == null) {
+            logger.debug(String.format("Job to client is null: %s, id = %d", job.getClient(), job.getJobId()));
         }
-        session.delete(status);
+        session.delete(job);
 
         transaction.commit();
         session.close();

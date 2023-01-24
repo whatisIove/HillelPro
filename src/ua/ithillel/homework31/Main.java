@@ -1,13 +1,15 @@
-package ua.ithillel.homework29;
+package ua.ithillel.homework31;
 
-import ua.ithillel.homework29.entity.Account;
-import ua.ithillel.homework29.entity.Client;
-import ua.ithillel.homework29.entity.Job;
-import ua.ithillel.homework29.entity.Status;
-import ua.ithillel.homework29.service.AccountService;
-import ua.ithillel.homework29.service.ClientService;
-import ua.ithillel.homework29.service.JobService;
-import ua.ithillel.homework29.service.StatusService;
+import ua.ithillel.homework31.entity.Account;
+import ua.ithillel.homework31.entity.Client;
+import ua.ithillel.homework31.entity.Job;
+import ua.ithillel.homework31.entity.Status;
+import ua.ithillel.homework31.exception.client.WrongClientPhone;
+import ua.ithillel.homework31.exception.status.WrongGetByIdStatus;
+import ua.ithillel.homework31.service.AccountService;
+import ua.ithillel.homework31.service.ClientService;
+import ua.ithillel.homework31.service.JobService;
+import ua.ithillel.homework31.service.StatusService;
 
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +63,6 @@ public class Main {
         clientService.save(client);
 
         accountService.getById(1);
-        clientService.getByPhone(null);
     }
 
     private static void getAccountById(final Integer id) {
@@ -74,7 +75,7 @@ public class Main {
         System.out.println(findClientById);
     }
 
-    private static void getStatusById(final Integer id) {
+    private static void getStatusById(final Integer id) throws WrongGetByIdStatus {
         final Status findStatusById = statusService.getById(id);
         System.out.println(findStatusById);
     }
@@ -84,7 +85,7 @@ public class Main {
         System.out.println(findJobById);
     }
 
-    private static void findClientByPhone(final Long phone) {
+    private static void findClientByPhone(final Long phone) throws WrongClientPhone {
         final Client clientGetByPhone = clientService.getByPhone(phone);
         System.out.println("clientGetByPhone = " + clientGetByPhone);
     }

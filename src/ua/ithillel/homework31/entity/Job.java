@@ -1,4 +1,4 @@
-package ua.ithillel.homework29.entity;
+package ua.ithillel.homework31.entity;
 
 import lombok.*;
 
@@ -13,6 +13,11 @@ import javax.persistence.*;
 @ToString
 @NamedNativeQuery(name = "getAllJobs", query = "SELECT * FROM jobs;", resultClass = Job.class)
 public class Job {
+
+    public Job(String name, String schedule) {
+        this.name = name;
+        this.schedule = schedule;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

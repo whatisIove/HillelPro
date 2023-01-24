@@ -1,8 +1,9 @@
-package ua.ithillel.homework29.service;
+package ua.ithillel.homework31.service;
 
 import org.apache.log4j.Logger;
-import ua.ithillel.homework29.dao.StatusDao;
-import ua.ithillel.homework29.entity.Status;
+import ua.ithillel.homework31.dao.StatusDao;
+import ua.ithillel.homework31.entity.Status;
+import ua.ithillel.homework31.exception.status.WrongGetByIdStatus;
 
 import java.util.List;
 
@@ -15,8 +16,12 @@ public class StatusService {
         return statusDao.getAll();
     }
 
-    public Status getById(final Integer id) {
-        logger.debug(String.format("getById. Get status by id for validation: %d", id));
+    public Status getById(final Integer id) throws WrongGetByIdStatus {
+        if (id == null || id <= 5000) {
+            throw new WrongGetByIdStatus("Status is not contained under this id " +
+                    "or more than five thousandth of an element.");
+        }
+            logger.debug(String.format("getById. Get status by id for validation: %d", id));
         return statusDao.getById(id);
     }
 

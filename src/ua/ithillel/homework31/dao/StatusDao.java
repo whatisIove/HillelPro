@@ -1,89 +1,92 @@
-package ua.ithillel.homework29.dao;
+package ua.ithillel.homework31.dao;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ua.ithillel.homework29.entity.Account;
-import ua.ithillel.homework29.util.HibernateConfiguration;
+import ua.ithillel.homework31.entity.Status;
+import ua.ithillel.homework31.util.HibernateConfiguration;
 
 import javax.persistence.Query;
 import java.util.List;
 
-public class AccountDao {
-    private final Logger logger = Logger.getLogger(AccountDao.class);
+public class StatusDao {
+    private final Logger logger = Logger.getLogger(StatusDao.class);
 
-    public Account getById(Integer id) {
+    public Status getById(Integer id) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        final Account account = session.get(Account.class, id);
+        final Status status = session.get(Status.class, id);
 
         if (id == null) {
-            logger.debug(String.format("Account is null, where id = {%d}", account.getId()));
-        }
-        transaction.commit();
-        session.close();
-
-        return account;
-    }
-
-    public List<Account> getAll() {
-        final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
-        final Session session = sessionFactory.openSession();
-        final Transaction transaction = session.beginTransaction();
-
-        final Query query = session.createNamedQuery("getAllAccounts");
-        List<Account> accounts = query.getResultList();
-
-        if (accounts == null) {
-            logger.debug("Accounts is null.");
+            logger.debug(String.format("Status is null, where id = {%d}", status.getId()));
         }
 
         transaction.commit();
         session.close();
 
-        return accounts;
+        return status;
     }
 
-    public void save(final Account account) {
+    public List<Status> getAll() {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (account.getNumber() == null) {
-            logger.debug(String.format("Account number is null: %s, id = %d", account.getNumber(), account.getId()));
+        final Query query = session.createNamedQuery("getAllStatuses");
+        List<Status> statuses = query.getResultList();
+
+        if (statuses == null) {
+            logger.debug("Statuses is null.");
         }
-        session.save(account);
+
+        transaction.commit();
+        session.close();
+
+        return statuses;
+    }
+
+    public void save(final Status status) {
+        final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+        final Session session = sessionFactory.openSession();
+        final Transaction transaction = session.beginTransaction();
+
+        if (status.getAlias() == null) {
+            logger.debug(String.format("Status alias is null: %s, id = %d", status.getAlias(), status.getId()));
+        }
+        session.save(status);
 
         transaction.commit();
         session.close();
     }
 
-    public void update(final Account account) {
+    public void update(final Status status) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (account.getValue() == null) {
-            logger.debug(String.format("Account value is null: %s, id = %d", account.getValue(), account.getId()));
+        if (status.getDescription() == null) {
+            logger.debug(String.format("Status description is null: %s, id = %d",
+                    status.getDescription(), status.getId()));
         }
-        session.update(account);
+        session.update(status);
 
         transaction.commit();
         session.close();
     }
 
-    public void delete(final Account account) {
+    public void delete(final Status status) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (account.getClient() == null) {
-            logger.debug(String.format("Account to client is null: %s, id = %d", account.getClient(), account.getId()));
+        if (status.getClients() == null) {
+            logger.debug(String.format("Clients statuses is null: %s, id = %d",
+                    status.getClients(), status.getId()));
         }
-        session.delete(account);
+        session.delete(status);
 
         transaction.commit();
         session.close();

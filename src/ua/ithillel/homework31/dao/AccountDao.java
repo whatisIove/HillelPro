@@ -1,90 +1,89 @@
-package ua.ithillel.homework29.dao;
+package ua.ithillel.homework31.dao;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ua.ithillel.homework29.entity.Job;
-import ua.ithillel.homework29.util.HibernateConfiguration;
+import ua.ithillel.homework31.entity.Account;
+import ua.ithillel.homework31.util.HibernateConfiguration;
 
 import javax.persistence.Query;
 import java.util.List;
 
-public class JobDao {
-    private final Logger logger = Logger.getLogger(JobDao.class);
+public class AccountDao {
+    private final Logger logger = Logger.getLogger(AccountDao.class);
 
-    public Job getById(Integer id) {
+    public Account getById(Integer id) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        final Job job = session.get(Job.class, id);
+        final Account account = session.get(Account.class, id);
 
         if (id == null) {
-            logger.debug(String.format("Job is null, where id = {%d}", job.getJobId()));
+            logger.debug(String.format("Account is null, where id = {%d}", account.getId()));
+        }
+        transaction.commit();
+        session.close();
+
+        return account;
+    }
+
+    public List<Account> getAll() {
+        final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+        final Session session = sessionFactory.openSession();
+        final Transaction transaction = session.beginTransaction();
+
+        final Query query = session.createNamedQuery("getAllAccounts");
+        List<Account> accounts = query.getResultList();
+
+        if (accounts == null) {
+            logger.debug("Accounts is null.");
         }
 
         transaction.commit();
         session.close();
 
-        return job;
+        return accounts;
     }
 
-    public List<Job> getAll() {
+    public void save(final Account account) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        final Query query = session.createNamedQuery("getAllJobs");
-        List<Job> jobs = query.getResultList();
-
-        if (jobs == null) {
-            logger.debug("Jobs is null.");
+        if (account.getNumber() == null) {
+            logger.debug(String.format("Account number is null: %s, id = %d", account.getNumber(), account.getId()));
         }
-
-        transaction.commit();
-        session.close();
-
-        return jobs;
-    }
-
-    public void save(final Job job) {
-        final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
-        final Session session = sessionFactory.openSession();
-        final Transaction transaction = session.beginTransaction();
-
-        if (job.getName() == null) {
-            logger.debug(String.format("Job name is null: %s, id = %d", job.getName(), job.getJobId()));
-        }
-        session.save(job);
+        session.save(account);
 
         transaction.commit();
         session.close();
     }
 
-    public void update(final Job job) {
+    public void update(final Account account) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (job.getSchedule() == null) {
-            logger.debug(String.format("Job schedule is null: %s, id = %d", job.getSchedule(), job.getJobId()));
+        if (account.getValue() == null) {
+            logger.debug(String.format("Account value is null: %s, id = %d", account.getValue(), account.getId()));
         }
-        session.update(job);
+        session.update(account);
 
         transaction.commit();
         session.close();
     }
 
-    public void delete(final Job job) {
+    public void delete(final Account account) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        if (job.getClient() == null) {
-            logger.debug(String.format("Job to client is null: %s, id = %d", job.getClient(), job.getJobId()));
+        if (account.getClient() == null) {
+            logger.debug(String.format("Account to client is null: %s, id = %d", account.getClient(), account.getId()));
         }
-        session.delete(job);
+        session.delete(account);
 
         transaction.commit();
         session.close();

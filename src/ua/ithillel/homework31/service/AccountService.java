@@ -1,8 +1,8 @@
-package ua.ithillel.homework29.service;
+package ua.ithillel.homework31.service;
 
 import org.apache.log4j.Logger;
-import ua.ithillel.homework29.dao.AccountDao;
-import ua.ithillel.homework29.entity.Account;
+import ua.ithillel.homework31.dao.AccountDao;
+import ua.ithillel.homework31.entity.Account;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package ua.ithillel.homework29.dao;
+package ua.ithillel.homework31.dao;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import ua.ithillel.homework29.entity.Client;
-import ua.ithillel.homework29.util.HibernateConfiguration;
+import ua.ithillel.homework31.entity.Client;
+import ua.ithillel.homework31.util.HibernateConfiguration;
 
 import javax.persistence.Query;
 import java.util.List;

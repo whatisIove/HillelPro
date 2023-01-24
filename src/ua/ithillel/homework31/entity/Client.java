@@ -1,4 +1,4 @@
-package ua.ithillel.homework29.entity;
+package ua.ithillel.homework31.entity;
 
 import lombok.*;
 
@@ -61,4 +61,7 @@ public class Client {
             inverseJoinColumns = {@JoinColumn(name = "status_id")})
     @ToString.Exclude
     private Set<Status> statuses;
+
+    public Client(Job job) {
+    }
 }

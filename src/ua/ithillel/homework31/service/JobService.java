@@ -1,14 +1,30 @@
-package ua.ithillel.homework29.service;
+package ua.ithillel.homework31.service;
 
 import org.apache.log4j.Logger;
-import ua.ithillel.homework29.dao.JobDao;
-import ua.ithillel.homework29.entity.Job;
+import ua.ithillel.homework31.dao.JobDao;
+import ua.ithillel.homework31.entity.Job;
+import ua.ithillel.homework31.exception.job.WrongJobInfo;
 
 import java.util.List;
 
 public class JobService {
     private final Logger logger = Logger.getLogger(JobService.class);
     private final JobDao jobDao = new JobDao();
+
+
+    public boolean validateJob(final List<Job> jobs, final Job job) throws WrongJobInfo {
+        if (jobs == null || !jobs.contains(job)) {
+            throw new WrongJobInfo("Jobs is null or does not contain job.");
+        }
+        return false;
+    }
+
+    public boolean validateOneJob(final Job job) throws WrongJobInfo {
+        if (job == null) {
+            throw new WrongJobInfo("Job is null.");
+        }
+        return false;
+    }
 
     public List<Job> getAll() {
         logger.debug(String.format("Get all jobs: %s", jobDao.getAll()));
